@@ -23,6 +23,8 @@ jobs:
         run: |
           echo "${{ secrets.PRIVATE_SSH_KEY }}" > /tmp/key.pem
           chmod 600 /tmp/key.pem
+          echo "Host your-ec2-instance-ip" > /tmp/config
+          echo "  IdentityFile /tmp/key.pem" >> /tmp/config
           echo -e "Host 3.121.189.240\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
         env:
           PRIVATE_SSH_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
