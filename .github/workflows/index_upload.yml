@@ -20,7 +20,7 @@ jobs:
           aws-region: eu-central-1
 
 
-      - name: Set up credentials
+      - name: Set up credentials and upload index.html
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
@@ -28,10 +28,19 @@ jobs:
           REMOTE_USER: "ubuntu"
           SOURCE: "index.html"
           TARGET_DIR: "/var/www/html"
+
+      - name: Set up credentials and upload move_index.sh
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
+          REMOTE_HOST: 18.195.149.80
+          REMOTE_USER: "ubuntu"
+          SOURCE: "move_html.sh"
+          TARGET_DIR: "/var/www/html"
           
       - name: Run move_html.sh on remote server
         run: |
-         ssh -o StrictHostKeyChecking=no -i /tmp/key.pem ubuntu@18.195.149.80 'bash -s' < move_html.sh
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_PRIVATE_KEY }} ubuntu@18.195.149.80 'bash move_html.sh'
 
 
 
