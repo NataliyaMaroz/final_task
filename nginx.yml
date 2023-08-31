@@ -1,0 +1,34 @@
+# Ansible playbook to configure an EC2 instance
+
+# Set the name of the playbook
+- name: "Configure EC2 instance"
+
+# Specify the target hosts for this playbook
+  hosts: nat_instance
+
+# Use privilege escalation to run tasks with elevated permissions
+  become: true
+
+# Set the remote user as 'ubuntu' for the SSH connection
+  remote_user: ubuntu
+
+# Define the tasks to be executed on the target hosts
+  tasks:
+
+    # Task: Update and upgrade the apt packages
+    - name: "Update and upgrade apt package"
+      apt:
+        upgrade: yes
+        update_cache: yes
+
+    # Task: Install Nginx
+    - name: "Install Nginx"
+      apt:
+        name: nginx
+        state: present
+
+    # Task: Start the Nginx
+    - name: "Start Nginx"
+      service:
+        name: nginx
+        state: started
