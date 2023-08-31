@@ -35,7 +35,7 @@ jobs:
     
       - name: Upload index.html
         run: |
-          scp -i /tmp/key.pem index.html ubuntu@3.121.189.240:/usr/share/nginx/html/
+          run: scp -o StrictHostKeyChecking=no -i /tmp/key.pem index.html ubuntu@3.121.189.240:/usr/share/nginx/html/
       
       - name: Clean up SSH key
         run: rm /tmp/key.pem
