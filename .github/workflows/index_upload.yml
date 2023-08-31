@@ -24,7 +24,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${ { secrets.EC2_PRIVATE_KEY }}
-          REMOTE_HOST: "3.65.206.128"
+          REMOTE_HOST: 3.65.206.128
           REMOTE_USER: "ubuntu"
          
       - name: Upload index.html
