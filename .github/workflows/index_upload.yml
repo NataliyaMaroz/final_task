@@ -20,16 +20,6 @@ jobs:
           aws-region: eu-central-1
 
 
-      - name: Set up credentials and upload index.html
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          REMOTE_HOST: 18.195.149.80
-          REMOTE_USER: "ubuntu"
-          SOURCE: "index.html"
-          TARGET_DIR: "/var/www/html"
-
-
 
 
 
