@@ -19,6 +19,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: eu-central-1
 
+
+      - name: Set up credentials
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${ { secrets.EC2_PRIVATE_KEY }}
+          REMOTE_HOST: "3.65.206.128"
+          REMOTE_USER: "ubuntu"
          
       - name: Upload index.html
         run: scp -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY index.html ubuntu@3.65.206.128:/usr/share/nginx/html/
