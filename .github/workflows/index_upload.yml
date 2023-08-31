@@ -4,8 +4,6 @@ on: [push]
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      deploy_file: "index.html"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,5 +14,5 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          SOURCE: "$deploy_file"
-          TARGET: ${{ secrets.TARGET_DIR }}
+          SOURCE: "index.html"
+          TARGET_DIR: "/var/www/html"
