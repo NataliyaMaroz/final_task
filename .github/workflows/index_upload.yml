@@ -12,29 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
+      - name: Set up credentials
+        uses: easingthemes/ssh-deploy@main
+        env:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          SSH_PRIVATE_KEY: ${ { secrets.EC2_PRIVATE_KEY }}
+          REMOTE_HOST: "ec2-3-65-206-128.eu-central-1.compute.amazonaws.com"
+          REMOTE_USER: "ubuntu"
           aws-region: eu-central-1
-
-      - name: Set up SSH key
-        run: |
-          echo "${{ secrets.PRIVATE_SSH_KEY }}" > /tmp/key.pem
-          chmod 600 /tmp/key.pem
-        env:
-          PRIVATE_SSH_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-
-      - name: Create SSH config
-        run: |
-          mkdir -p /home/runner/.ssh
-          echo "Host your-ec2-instance-ip" > /home/runner/.ssh/config
-          echo "  IdentityFile /tmp/key.pem" >> /home/runner/.ssh/config
-          chmod 600 /home/runner/.ssh/config
-    
+          
       - name: Upload index.html
-        run: scp -o StrictHostKeyChecking=no -i /tmp/key.pem index.html ubuntu@ 3.65.206.128:/usr/share/nginx/html/
-      
-      - name: Clean up SSH key
-        run: rm /tmp/key.pem
+        run: scp -o StrictHostKeyChecking=no -i /tmp/key.pem index.html ubuntu@3.65.206.128:/usr/share/nginx/html/
+
+
