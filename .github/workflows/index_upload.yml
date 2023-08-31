@@ -29,14 +29,9 @@ jobs:
           SOURCE: "index.html"
           TARGET_DIR: "/var/www/html"
           
-          AFTER_SCRIPT: |
-            ssh -o StrictHostKeyChecking=no -i /tmp/key.pem ubuntu@18.195.149.80 'if [ -f "/var/www/html/index.nginx-debian.html" ]; then
-              sudo rm /var/www/html/index.nginx-debian.html 
-            fi'
-
-            if [ -f "index.html" ]; then
-              sudo mv index.html /var/www/html/
-            fi   
+      - name: Run move_html.sh on remote server
+        run: |
+         ssh -o StrictHostKeyChecking=no -i /tmp/key.pem ubuntu@18.195.149.80 'bash -s' < move_html.sh
 
 
 
