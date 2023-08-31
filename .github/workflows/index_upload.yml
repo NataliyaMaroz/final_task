@@ -17,4 +17,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SOURCE: "$deploy_file"
-          TARGET_DIR: ${{ secrets.TARGET_DIR }}
+          TARGET: ${{ secrets.TARGET_DIR }}
