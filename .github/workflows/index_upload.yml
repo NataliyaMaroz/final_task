@@ -29,17 +29,7 @@ jobs:
           SOURCE: "index.html"
           TARGET_DIR: "/var/www/html"
 
-      - name: Set up credentials and upload move_index.sh
-        uses: easingthemes/ssh-deploy@main
-        with:
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
-          REMOTE_HOST: 18.195.149.80
-          REMOTE_USER: "ubuntu"
-          SOURCE: "move_html.sh"
-          TARGET_DIR: "/var/www/html"
-          AFTER_SCRIPT: |
-            sudo chmod +x move_html.sh
-            sudo bash move_index.sh
+
 
 
 
