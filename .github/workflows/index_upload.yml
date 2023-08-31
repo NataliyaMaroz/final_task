@@ -27,6 +27,6 @@ jobs:
           REMOTE_USER: "ubuntu"
           
       - name: Upload index.html
-        run: scp -o StrictHostKeyChecking=no -i /tmp/key.pem index.html ubuntu@3.65.206.128:/usr/share/nginx/html/
+        run: scp -o StrictHostKeyChecking=no -i $SSH_PRIVATE_KEY index.html ubuntu@3.65.206.128:/usr/share/nginx/html/
 
 
