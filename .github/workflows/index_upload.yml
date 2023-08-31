@@ -27,7 +27,7 @@ jobs:
           REMOTE_HOST: 18.195.149.80
           REMOTE_USER: "ubuntu"
           SOURCE: "index.html"
-          REMOTE_TARGET_DIR: "/var/www/html/"
+          TARGET: "/var/www/html/"
          
 
 
