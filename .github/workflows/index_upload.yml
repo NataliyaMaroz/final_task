@@ -37,10 +37,9 @@ jobs:
           REMOTE_USER: "ubuntu"
           SOURCE: "move_html.sh"
           TARGET_DIR: "/var/www/html"
-          
-      - name: Run move_html.sh on remote server
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_PRIVATE_KEY }} ubuntu@18.195.149.80 'bash ./move_html.sh'
+          AFTER_SCRIPT: |
+            sudo chmod +x move_html.sh
+            sudo bash move_index.sh
 
 
 
