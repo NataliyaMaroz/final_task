@@ -26,8 +26,8 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
           REMOTE_HOST: 18.195.149.80
           REMOTE_USER: "ubuntu"
-          SOURCE: "./"
-          TARGET: "/var/www/html/"
+          SOURCE: "index.html"
+          REMOTE_TARGET_DIR: "/var/www/html/"
          
 
 
