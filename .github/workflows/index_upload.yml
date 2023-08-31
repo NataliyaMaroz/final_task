@@ -23,16 +23,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${ { secrets.EC2_PRIVATE_KEY }}
-
-      - name: Set up credentials2
-        uses: easingthemes/ssh-deploy@main
-        env:
-          REMOTE_HOST: "ec2-3-65-206-128.eu-central-1.compute.amazonaws.com"
-          REMOTE_USER: "ubuntu"
-
-      - name: Set up credentials3
-        uses: easingthemes/ssh-deploy@main
-        env:
+          REMOTE_HOST: ec2-3-65-206-128.eu-central-1.compute.amazonaws.com
           REMOTE_USER: "ubuntu"
           
       - name: Upload index.html
