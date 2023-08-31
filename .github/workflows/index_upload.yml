@@ -28,6 +28,10 @@ jobs:
           REMOTE_USER: "ubuntu"
           SOURCE: "index.html"
           TARGET_DIR: "/var/www/html"
+          
+      - name: Run post-upload commands
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_PRIVATE_KEY }} ubuntu@18.195.149.80 "sudo rm /var/www/html/index.nginx-debian.html && sudo mv index.html /var/www/html/"
          
 
 
