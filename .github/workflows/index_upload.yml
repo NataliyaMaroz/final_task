@@ -40,7 +40,7 @@ jobs:
           
       - name: Run move_html.sh on remote server
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_PRIVATE_KEY }} ubuntu@18.195.149.80 'bash move_html.sh'
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_PRIVATE_KEY }} ubuntu@18.195.149.80 'bash ./move_html.sh'
 
 
 
